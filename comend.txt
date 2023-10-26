@@ -1,0 +1,16 @@
+train
+python train.py --config ./configs/*.yml
+
+distillation
+python train_distillation.py --config ./configs/*.yml
+
+pyz
+python3.6 -m zipapp  solution  -p='/usr/bin/env python3.6'
+
+nohup python -u train.py > log.txt &
+nohup python -u train.py --config=./configs/ > log.txt &
+nohup python -u train_distillation.py --config ./configs/ > log.txt &
+
+
+distillation train
+nohup ./run_train_val.sh > log.txt &
